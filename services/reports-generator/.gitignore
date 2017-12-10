@@ -1,0 +1,10 @@
+/dist
+/logs
+/npm-debug.log
+/node_modules
+/.npm
+/.config
+package-lock.json
+.babel.json
+.bash_history
+.DS_Store

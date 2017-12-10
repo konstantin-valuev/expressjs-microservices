@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+    redis:
+        container_name: redis
+        image: redis:alpine
+        ports:
+            - 6379:6379
+
+    api-gateway:
+        container_name: api-gateway
+        build: ./services/api
+        ports:
+            - 3000:3000
+        volumes:
+            - ./services/api:/var/www/
+            - /var/www/node_modules
+        links:
+            - redis
+
+    reports-generator:
+        container_name: reports-generator
+        build: ./services/reports-generator
+        ports:
+            - 3001:3001
+        volumes:
+            - ./services/reports-generator:/var/www/
+            - /var/www/node_modules
+        links:
+            - redis
